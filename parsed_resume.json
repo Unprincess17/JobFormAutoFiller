@@ -1,0 +1,11 @@
+{
+  "personal_info": {
+    "name": "龚书帆",
+    "email": "shufan.gong@connect.um.edu.mo"
+  },
+  "education": [],
+  "work_experience": [],
+  "skills": [],
+  "projects": [],
+  "raw_text": "龚书帆\n电话： (+86) 19939052770 出生年月 2001年10月\n电子邮箱： shufan.gong@connect.um.edu.mo\n教育经历\n2024.08-至今 澳门大学 计算机科学专业 博士\n \n2020.09-2024.06 武汉大学 计算机科学专业（卓越工程师） 本科\n•GPA: 3.8/4 (排名 29.7%)\n•相关课程：数字逻辑与电路（95），数据结构（93），计算机组成原理（92），概率论（95）\n研究领域\nRDMA加速的远内存技术 2024.10-至今\n•基于Swap系统，解决在内存较小时浮点数精度丢失问题\n基于eBPF的轻量级分布式追踪 2024.09-2024.10\n•负责对比实验的确定、运行和分析\n基于马尔科夫链蒙特卡洛算法的多粒度程序去冗余 10/2021-08/2023\n•使用程序特征分析的技术，分析了删减中可以合并的步骤，提出了在删减流程中加入依赖分析等粒度，最终加速删\n减的过程\n•改进了现有单粒度去冗余工具，引入依赖分析、路径分析等多个层次，相比原始工具，提高了50%的删减能力，同\n时有了更好的程序通用性。\n研究成果\nLightTrace: A Versatile Ebpf-enabled Toolkit for Lightweight  Distributed Tracing Work In Progress\nMulti-Obiective Program Debloating via Multi-Granularity Stochastic Search TOSEM 2025 (CCF-A)\n专业技能\n•熟悉基于RDMA的far-memory系统的配置和使用，具备相关内核编程经验\n•熟悉软件去冗余领域，具有LLVM & Clang编程能力\n•熟悉Python、Bash； 掌握C++、C语言\n•英语：雅思 7.0 （阅读8.5），六级 532分\n实践活动\n武汉大学计算机学院 新闻宣传部 干事 10/2020-07/2022\n•运营“计科先锋”公众号，负责采访、文案撰写、排版。公众号日活超过5k\n兴趣爱好\n•马拉松、骑行\n"
+}

@@ -1,0 +1,26 @@
+openai:
+  model: "gpt-3.5-turbo"
+  temperature: 0.7
+  max_tokens: 500
+  timeout: 30
+
+browser:
+  headless: false
+  browser_type: "firefox"  # chromium, firefox, webkit
+  viewport:
+    width: 1280
+    height: 720
+  timeout: 30000
+
+automation:
+  typing_delay: 100  # milliseconds between keystrokes
+  action_delay: 1000  # milliseconds between actions
+  max_retries: 3
+
+resume_parsing:
+  supported_formats: ["pdf", "docx", "doc"]
+  output_file: "parsed_resume.json"
+  
+logging:
+  level: "INFO"
+  file: "automation.log" 
