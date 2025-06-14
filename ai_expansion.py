@@ -1,4 +1,5 @@
 import openai
+from openai import OpenAI
 import json
 import logging
 from typing import Dict, Any, Optional
@@ -13,12 +14,12 @@ logger = logging.getLogger(__name__)
 class AIExpansion:
     def __init__(self, config: Dict[str, Any]):
         """Initialize OpenAI client with configuration"""
-        self.api_key = os.getenv('OPENAI_API_KEY')
+        self.openai_base_url = config.get('base_url')
+        self.api_key = config.get('OPENAI_API_KEY')
         if not self.api_key:
             raise ValueError("OpenAI API key not found. Please set OPENAI_API_KEY in your .env file")
         
-        openai.api_key = self.api_key
-        self.model = config.get('model', 'gpt-3.5-turbo')
+        self.model = config.get('model', 'gpt-4o-mini')
         self.temperature = config.get('temperature', 0.7)
         self.max_tokens = config.get('max_tokens', 500)
         self.timeout = config.get('timeout', 30)
@@ -30,7 +31,8 @@ class AIExpansion:
             prompt = self._create_prompt(question, resume_data, context)
             
             # Call OpenAI API
-            response = openai.ChatCompletion.create(
+            client = OpenAI(api_key=self.api_key, base_url=self.openai_base_url)
+            response = client.chat.completions.create(
                 model=self.model,
                 messages=[
                     {"role": "system", "content": "You are a professional resume assistant helping to fill job application forms. Provide concise, professional answers based on the candidate's resume data."},
@@ -124,6 +126,8 @@ INSTRUCTIONS:
         # Generic fallback
         return "I believe my background and experience make me a strong candidate for this position, and I am excited about the opportunity to contribute to your team."
     
+
+    # TODO: Should use LLM to determine if a question requires AI expansion vs direct resume data
     def is_abstract_question(self, question: str, field_type: str = "text") -> bool:
         """Determine if a question requires AI expansion vs direct resume data"""
         abstract_keywords = [
