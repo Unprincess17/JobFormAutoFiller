@@ -73,6 +73,7 @@ Thumbs.db
 
 # resume
 resumes/*
+parsed_resume.json
 
 # log
 logs/*
