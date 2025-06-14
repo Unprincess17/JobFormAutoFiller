@@ -107,9 +107,6 @@ class JobFormAutoFiller:
                 if not continue_filling:
                     break
             
-            # Keep browser open for user review
-            await self._keep_browser_open()
-            
         except KeyboardInterrupt:
             self.logger.info("Process interrupted by user")
         except Exception as e:
@@ -213,18 +210,6 @@ class JobFormAutoFiller:
             self.logger.info("Auto-fill completed successfully!")
         else:
             self.logger.error("Auto-fill completed with errors")
-    
-    async def _keep_browser_open(self):
-        """Keep browser open for user review"""
-        self.logger.info("Form filling completed. Browser will remain open for review.")
-        self.logger.info("Press Ctrl+C to exit when you're done reviewing the form.")
-        
-        try:
-            # Keep running until user interrupts
-            while True:
-                await asyncio.sleep(1)
-        except KeyboardInterrupt:
-            self.logger.info("Shutting down...")
     
     async def _cleanup(self):
         """Cleanup resources"""
