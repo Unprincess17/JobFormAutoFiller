@@ -92,14 +92,20 @@ class JobFormAutoFiller:
             # Step 2: Start browser and navigate
             await self._setup_browser(target_url)
             
-            # Step 3: Wait for user interaction
-            await self._wait_for_user_interaction()
-            
-            # Step 4: Auto-fill the form
-            results = await self._auto_fill_form()
-            
-            # Step 5: Display results
-            self._display_results(results)
+            while True:
+                # Step 3: Wait for user interaction
+                await self._wait_for_user_interaction()
+                
+                # Step 4: Auto-fill the form
+                results = await self._auto_fill_form()
+                
+                # Step 5: Display results
+                self._display_results(results)
+                
+                # Ask user if they want to fill another area
+                continue_filling = await self.browser_automation.ask_continue_filling()
+                if not continue_filling:
+                    break
             
             # Keep browser open for user review
             await self._keep_browser_open()
@@ -261,10 +267,10 @@ async def main():
     parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"])
     
     args = parser.parse_args()
-    
+
     # Load configuration
     config = load_config(args.config)
-    
+
     # Setup logging
     logging_config = config.get('logging', {})
     setup_logging(
@@ -280,6 +286,11 @@ async def main():
     
     # Check environment
     check_environment()
+
+    # Add OPENAI_API_KEY to config
+    # Priority: config.yaml > .env > os.getenv
+    if not config.get('openai', {}).get('OPENAI_API_KEY'):
+        config['openai']['OPENAI_API_KEY'] = os.getenv('OPENAI_API_KEY')
     
     # Find resume file
     resume_file = args.resume or find_resume_file()
